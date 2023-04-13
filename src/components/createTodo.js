@@ -45,7 +45,7 @@ function CreateTodo({ onCreateTodo }) {
       setNewTodo("");
     }
   };
-  const handleKeyDown = (e) => {
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       addTodo();
@@ -59,7 +59,7 @@ function CreateTodo({ onCreateTodo }) {
         placeholder="Todo를 입력하세요"
         value={newTodo}
         onChange={onChange}
-        onKeyDown={handleKeyDown}
+        onKeyPress={handleKeyPress}
       />
       <button data-testid="new-todo-add-button" onClick={addTodo}>
         추가
