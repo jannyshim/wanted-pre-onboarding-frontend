@@ -25,6 +25,10 @@
 
 ---
 
+### 실제 구현 작동 모습
+
+<img src="https://user-images.githubusercontent.com/110325183/231714290-1623548f-8661-4a7c-9e82-593d6ffed38b.gif">
+
 ### 디렉토리 구조
 
 ```
