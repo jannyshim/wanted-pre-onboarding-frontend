@@ -12,6 +12,7 @@ const TodoList = styled.ul`
     display: flex;
     align-items: center;
     input {
+      background-color: white;
       font-size: 16px;
       border: 1.5px solid #577d86;
       border-radius: 5px;
@@ -42,8 +43,6 @@ const StyledLabel = styled.label`
   display: flex;
   align-items: center;
   input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     width: 1.5rem;
     height: 1.5rem;
