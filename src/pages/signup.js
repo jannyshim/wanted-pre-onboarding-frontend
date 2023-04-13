@@ -9,6 +9,9 @@ const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  span {
+    color: #e16350;
+  }
 `;
 
 const SignupTitle = styled.h1`
@@ -67,6 +70,7 @@ const SignupButton = styled.button`
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -87,7 +91,22 @@ function SignUp() {
   }, [navigate]);
 
   const isFormValid = () => {
-    return isEmailValid(email) && isPasswordValid(password);
+    return (
+      isEmailValid(email) &&
+      isPasswordValid(password) &&
+      password === passwordConfirm
+    );
+  };
+  const errorMessage = () => {
+    if (!isEmailValid(email)) {
+      return "올바른 이메일 형식으로 입력해주세요.";
+    } else if (!isPasswordValid(password)) {
+      return "비밀번호는 8자리 이상 입력해주세요.";
+    } else if (password !== passwordConfirm) {
+      return "비밀번호가 일치하지 않습니다.";
+    } else {
+      return "";
+    }
   };
 
   const handleSignUp = async (email, password) => {
@@ -113,6 +132,7 @@ function SignUp() {
   return (
     <SignupContainer>
       <SignupTitle>회원가입</SignupTitle>
+
       <SignupForm onSubmit={handleSubmit}>
         <SignupLabel htmlFor="email">Email</SignupLabel>
         <SignupInput
@@ -132,6 +152,16 @@ function SignUp() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <SignupLabel htmlFor="password-confirm">Confirm Password</SignupLabel>
+        <SignupInput
+          type="password"
+          id="password-confirm"
+          data-testid="password-confirm-input"
+          placeholder="비밀번호 재입력"
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+        <span>{errorMessage()}</span>
         <SignupButton
           type="submit"
           onClick={handleSubmit}

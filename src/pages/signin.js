@@ -111,7 +111,11 @@ function SignIn() {
       navigate("/todo");
       window.location.reload(); // todo 에서 빈배열이 먼저 뜨는 것을 막기위함
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 401) {
+        alert("가입되지 않은 이메일 주소이거나 패스워드가 일치하지 않습니다.");
+      } else {
+        console.log(error);
+      }
     }
   };
 
